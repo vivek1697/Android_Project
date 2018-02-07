@@ -1,0 +1,5 @@
+<root>
+    <item name='java.util.List java.util.ListIterator&lt;E&gt; listIterator()'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>

@@ -2,8 +2,8 @@ package com.vivek.sampleapi;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -21,21 +21,26 @@ public class Index extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    //private Adapter newAdpater;
 
-    private TextView responseText;
+    //private TextView responseText;
     List<Product> products;
+    //private android.content.Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-        responseText = findViewById(R.id.my_recycler_view);
-        //mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+       // mRecyclerView = findViewById(R.id.my_recycler_view);
         //mRecyclerView.setHasFixedSize(true);
-        //mLayoutManager = new LinearLayoutManager(this);
-        //mRecyclerView.setLayoutManager(mLayoutManager);
-        //Adapter = new MyAdapter(myDataset);
-        //mRecyclerView.setAdapter(mAdapter);
+        //LinearLayoutManager llm = new LinearLayoutManager(context);
+        //newAdpater = (Adapter) new Newadpater(products);
+        //mRecyclerView.setLayoutManager(llm);
+        //mRecyclerView.setAdapter((RecyclerView.Adapter) newAdpater);
+        mRecyclerView = findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         getProducts();
     }
     private void getProducts(){
@@ -48,7 +53,7 @@ public class Index extends AppCompatActivity {
                     JsonObject jsonObject = response.body();
 
                     products = new Gson().fromJson(jsonObject.getAsJsonArray("products"),new TypeToken<List<Product>>() {}.getType());
-
+                    setProductsToAdapter();
 
                     Toast.makeText(Index.this, "successful" + response.body().toString(), Toast.LENGTH_LONG).show();
                 }
@@ -59,6 +64,12 @@ public class Index extends AppCompatActivity {
                 Toast.makeText(Index.this, "failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setProductsToAdapter(){
+        mAdapter = new Newadpater(products);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
 }
