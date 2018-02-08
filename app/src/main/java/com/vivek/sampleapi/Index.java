@@ -21,22 +21,14 @@ public class Index extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    //private Adapter newAdpater;
 
-    //private TextView responseText;
     List<Product> products;
-    //private android.content.Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-       // mRecyclerView = findViewById(R.id.my_recycler_view);
-        //mRecyclerView.setHasFixedSize(true);
-        //LinearLayoutManager llm = new LinearLayoutManager(context);
-        //newAdpater = (Adapter) new Newadpater(products);
-        //mRecyclerView.setLayoutManager(llm);
-        //mRecyclerView.setAdapter((RecyclerView.Adapter) newAdpater);
         mRecyclerView = findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -55,7 +47,7 @@ public class Index extends AppCompatActivity {
                     products = new Gson().fromJson(jsonObject.getAsJsonArray("products"),new TypeToken<List<Product>>() {}.getType());
                     setProductsToAdapter();
 
-                    Toast.makeText(Index.this, "successful" + response.body().toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Index.this, "successful", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -67,7 +59,7 @@ public class Index extends AppCompatActivity {
     }
 
     private void setProductsToAdapter(){
-        mAdapter = new Newadpater(products);
+        mAdapter = new Newadpater(products, this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
