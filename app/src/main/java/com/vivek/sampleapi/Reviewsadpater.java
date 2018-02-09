@@ -19,14 +19,14 @@ public class Reviewsadpater extends RecyclerView.Adapter<Reviewsadpater.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv1;
         static TextView userName;
-       // static TextView userRating;
+        static TextView userRating;
         static TextView userBody;
 
         public ViewHolder(View itemView1) {
             super(itemView1);
             cv1 = itemView1.findViewById(R.id.cv);
             userName = itemView1.findViewById(R.id.user_name);
-            //userRating = itemView1.findViewById(R.id.user_rating);
+            userRating = itemView1.findViewById(R.id.user_rating);
             userBody = itemView1.findViewById(R.id.user_body);
         }
     }
@@ -48,7 +48,7 @@ public class Reviewsadpater extends RecyclerView.Adapter<Reviewsadpater.ViewHold
     public void onBindViewHolder(Reviewsadpater.ViewHolder holder, int i) {
         Review review = reviews.get(i);
         ViewHolder.userName.setText(review.user);
-        //ViewHolder.userRating.setText(review.rating);
+        ViewHolder.userRating.setText(String.valueOf(review.rating));
         ViewHolder.userBody.setText(review.body);
 
     }

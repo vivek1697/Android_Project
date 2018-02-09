@@ -25,20 +25,21 @@
                 android:padding="3dp"
                 />
 
-            <!--<TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="rating"
                 android:id="@+id/user_rating"
                 android:layout_below="@+id/user_name"
-                />-->
+                android:padding="3dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="body"
                 android:id="@+id/user_body"
-                android:layout_below="@+id/user_name"
+                android:layout_below="@+id/user_rating"
                 />
 
         </RelativeLayout>
